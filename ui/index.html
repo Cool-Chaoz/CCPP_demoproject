@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>CCPP Modeling Demo</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    img { border: 1px solid #ccc; margin: 20px 0; }
+  </style>
+</head>
+
+<body>
+  <h1>Power Plant Output Modeling</h1>
+
+  <h2>Pairplot</h2>
+  <img id="pairplot" width="650"/>
+
+  <h2>Select Model</h2>
+  <select id="modelSelect" onchange="updateModel()">
+    <option value="lr">Linear Regression</option>
+    <option value="rf">Random Forest</option>
+  </select>
+
+  <h2>Model Results</h2>
+  <img id="result" width="650"/>
+
+  <script>
+    const API_URL = "https://your-ml-api.onrender.com";  // <-- replace with your Render URL
+
+    // Load pairplot
+    document.getElementById("pairplot").src = API_URL + "/pairplot";
+
+    function updateModel() {
+      const type = document.getElementById("modelSelect").value;
+      document.getElementById("result").src = `${API_URL}/model?type=${type}`;
+    }
+
+    // Load linear regression as default
+    updateModel()
+  </script>
+
+</body>
+</html>
